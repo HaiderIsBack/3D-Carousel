@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotating Cards</title>
+    <title>3D Rotating Cards</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -81,64 +81,11 @@
             transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        .ctm-3d-carousel .carousel .carousel__cell .carousel__content{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            z-index: 5;
-            display: flex;
-            flex-direction: column;
-            justify-content: end;
-            color: white;
-            padding: 20px;
-            opacity: 0;
-            transform: scale(1.5);
-            transition: all 0.4s ease;
-        }
-
         .ctm-3d-carousel .carousel .carousel__cell:hover img{
             transform: scale(1.5);
         }
 
-        .ctm-3d-carousel .carousel .carousel__cell img::after{
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(transparent, #111);
-            z-index: 6;
-        }
-
-        /* .ctm-3d-carousel .carousel .carousel__cell .carousel__content:hover{
-            opacity: 1;
-            transform: scale(1.5);
-        } */
-
-        .ctm-3d-carousel .carousel .carousel__cell .carousel__content .cc__year{
-            font-size: 20px;
-        }
-
-        .ctm-3d-carousel .carousel .carousel__cell .carousel__content .cc__info{
-            font-size: 9px;
-            margin: 0.6rem 0;
-        }
-
-        .ctm-3d-carousel .carousel .carousel__cell .carousel__content .cc__btn{
-            background: magenta;
-            color: black;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: none;
-            outline: none;
-            font-size: 7px;
-        }
-
-        .ctm-3d-carousel .carousel:hover .carousel__cell:not(:hover) img,
-        .ctm-3d-carousel .carousel:hover .carousel__cell .carousel__content:not(:hover){
+        .ctm-3d-carousel .carousel:hover .carousel__cell:not(:hover) img{
             filter: saturate(0) blur(5px);
             transform: scale(0.7);
         }
@@ -230,76 +177,10 @@
             </div>
         </div>
     </div>
-    <!-- <div class="ctm-3d-carousel">
-        <div class="carousel">
-            <div class="carousel__cell">
-                <img src="./images/img-1.webp" alt="">
-                <div class="carousel__content">
-                    <h5 class="cc__year">2024</h5>
-                    <p class="cc__info">
-                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
-                    </p>
-                    <button class="cc__btn">Open</button>
-                </div>
-            </div>
-            <div class="carousel__cell">
-                <img src="./images/img-2.webp" alt="">
-                <div class="carousel__content">
-                    <h5 class="cc__year">2024</h5>
-                    <p class="cc__info">
-                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
-                    </p>
-                    <button class="cc__btn">Open</button>
-                </div>
-            </div>
-            <div class="carousel__cell">
-                <img src="./images/img-3.webp" alt="">
-                <div class="carousel__content">
-                    <h5 class="cc__year">2024</h5>
-                    <p class="cc__info">
-                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
-                    </p>
-                    <button class="cc__btn">Open</button>
-                </div>
-            </div>
-            <div class="carousel__cell">
-                <img src="./images/img-4.webp" alt="">
-                <div class="carousel__content">
-                    <h5 class="cc__year">2024</h5>
-                    <p class="cc__info">
-                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
-                    </p>
-                    <button class="cc__btn">Open</button>
-                </div>
-            </div>
-            <div class="carousel__cell">
-                <img src="./images/img-5.webp" alt="">
-                <div class="carousel__content">
-                    <h5 class="cc__year">2024</h5>
-                    <p class="cc__info">
-                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
-                    </p>
-                    <button class="cc__btn">Open</button>
-                </div>
-            </div>
-            <div class="carousel__cell">
-                <img src="./images/img-6.webp" alt="">
-                <div class="carousel__content">
-                    <h5 class="cc__year">2024</h5>
-                    <p class="cc__info">
-                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
-                    </p>
-                    <button class="cc__btn">Open</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="credits">
         <p>Made by Syed Zulqarnain Haider</p>
         <p>2025</p>
     </div>
-
-    <script src="./script.js"></script>
 </body>
 </html>
