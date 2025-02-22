@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background: linear-gradient(45deg, navy, darkblue, royalblue); */
+            background: linear-gradient(45deg, crimson, darkorange);
+        }
+
+        #mario-style-bg{
+            width: 100%;
+            height: 100vh;
+            background-image: url("images/pixel-star-50x50.png");
+            background-repeat: repeat;
+            background-size: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.2;
+            animation: anim linear infinite 40s;
+        }
+
+        @keyframes anim {
+            from{
+                background-position: 0% 0%;
+            }
+            to{
+                background-position: 100% 100%;
+            }
+        }
+
+        .ctm-3d-carousel{
+            width: 210px;
+            height: 280px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .ctm-3d-carousel .carousel{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: rotation 20s infinite linear;
+        }
+
+        .ctm-3d-carousel .carousel:hover{
+            animation-play-state: paused;
+        }
+
+        .ctm-3d-carousel .carousel__cell {
+            position: absolute;
+            width: 190px;
+            height: 260px;
+            left: 10px;
+            top: 10px;
+            /* background: red; */
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell .carousel__content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(1.5);
+            transition: all 0.4s ease;
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell:hover img{
+            transform: scale(1.5);
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell img::after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, #111);
+            z-index: 6;
+        }
+
+        /* .ctm-3d-carousel .carousel .carousel__cell .carousel__content:hover{
+            opacity: 1;
+            transform: scale(1.5);
+        } */
+
+        .ctm-3d-carousel .carousel .carousel__cell .carousel__content .cc__year{
+            font-size: 20px;
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell .carousel__content .cc__info{
+            font-size: 9px;
+            margin: 0.6rem 0;
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell .carousel__content .cc__btn{
+            background: magenta;
+            color: black;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+            font-size: 7px;
+        }
+
+        .ctm-3d-carousel .carousel:hover .carousel__cell:not(:hover) img,
+        .ctm-3d-carousel .carousel:hover .carousel__cell .carousel__content:not(:hover){
+            filter: saturate(0) blur(5px);
+            transform: scale(0.7);
+        }
+
+        .ctm-3d-carousel .carousel .carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(288px); }
+        .ctm-3d-carousel .carousel .carousel__cell:nth-child(2) { transform: rotateY(60deg) translateZ(288px); }
+        .ctm-3d-carousel .carousel .carousel__cell:nth-child(3) { transform: rotateY(120deg) translateZ(288px); }
+        .ctm-3d-carousel .carousel .carousel__cell:nth-child(4) { transform: rotateY(180deg) translateZ(288px); }
+        .ctm-3d-carousel .carousel .carousel__cell:nth-child(5) { transform: rotateY(240deg) translateZ(288px); }
+        .ctm-3d-carousel .carousel .carousel__cell:nth-child(6) { transform: rotateY(300deg) translateZ(288px); }
+
+        @keyframes rotation{
+            from {
+                transform: rotateY(0deg);
+            }
+            to{
+                transform: rotateY(360deg);
+            }
+        }
+
+        .credits{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .credits p{
+            color: white;
+            font-family: "Press Start 2P", sans-serif;
+            font-weight: normal;
+            font-size: 10px;
+        }
+
+        @media (max-width: 576px){
+            .ctm-3d-carousel{
+                width: 100%;
+                height: 180px;
+                overflow: hidden;
+            }
+            .ctm-3d-carousel .carousel__cell{
+                width: calc(100% - 20px);
+                height: 160px;
+                padding: 20px;
+            }
+            .ctm-3d-carousel .carousel .carousel__cell img:hover{
+                transform: scale(1.2);
+            }
+            .ctm-3d-carousel .carousel:hover .carousel__cell img:not(:hover) {
+                filter: none;
+                transform: scale(0.7);
+            }
+
+            .ctm-3d-carousel .carousel .carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(140px); }
+            .ctm-3d-carousel .carousel .carousel__cell:nth-child(2) { transform: rotateY(60deg) translateZ(140px); }
+            .ctm-3d-carousel .carousel .carousel__cell:nth-child(3) { transform: rotateY(120deg) translateZ(140px); }
+            .ctm-3d-carousel .carousel .carousel__cell:nth-child(4) { transform: rotateY(180deg) translateZ(140px); }
+            .ctm-3d-carousel .carousel .carousel__cell:nth-child(5) { transform: rotateY(240deg) translateZ(140px); }
+            .ctm-3d-carousel .carousel .carousel__cell:nth-child(6) { transform: rotateY(300deg) translateZ(140px); }
+        }
+    </style>
+</head>
+<body>
+    <div id="mario-style-bg"></div>
+
+    <div class="ctm-3d-carousel">
+        <div class="carousel">
+            <div class="carousel__cell">
+                <img src="./images/Lisa.Minci.1024.3141502.webp" alt="">
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/Ningguang.1024.3643610.webp" alt="">
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/Noelle.1024.3141511.webp" alt="">
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/Raiden.Shogun.full.3396041.jpg" alt="">
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/Yae.Miko.1024.3542004.webp" alt="">
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/Yelan.1024.3610100.webp" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- <div class="ctm-3d-carousel">
+        <div class="carousel">
+            <div class="carousel__cell">
+                <img src="./images/img-1.webp" alt="">
+                <div class="carousel__content">
+                    <h5 class="cc__year">2024</h5>
+                    <p class="cc__info">
+                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
+                    </p>
+                    <button class="cc__btn">Open</button>
+                </div>
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/img-2.webp" alt="">
+                <div class="carousel__content">
+                    <h5 class="cc__year">2024</h5>
+                    <p class="cc__info">
+                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
+                    </p>
+                    <button class="cc__btn">Open</button>
+                </div>
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/img-3.webp" alt="">
+                <div class="carousel__content">
+                    <h5 class="cc__year">2024</h5>
+                    <p class="cc__info">
+                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
+                    </p>
+                    <button class="cc__btn">Open</button>
+                </div>
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/img-4.webp" alt="">
+                <div class="carousel__content">
+                    <h5 class="cc__year">2024</h5>
+                    <p class="cc__info">
+                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
+                    </p>
+                    <button class="cc__btn">Open</button>
+                </div>
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/img-5.webp" alt="">
+                <div class="carousel__content">
+                    <h5 class="cc__year">2024</h5>
+                    <p class="cc__info">
+                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
+                    </p>
+                    <button class="cc__btn">Open</button>
+                </div>
+            </div>
+            <div class="carousel__cell">
+                <img src="./images/img-6.webp" alt="">
+                <div class="carousel__content">
+                    <h5 class="cc__year">2024</h5>
+                    <p class="cc__info">
+                        Authorized Reseller of Schneider Electric FZE On online Platform E-Commerce
+                    </p>
+                    <button class="cc__btn">Open</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="credits">
+        <p>Made by Syed Zulqarnain Haider</p>
+        <p>2025</p>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
